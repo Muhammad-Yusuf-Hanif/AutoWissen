@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 const App = () => {
-	console.log(carsData);
+	// console.log(carsData);
 	const navigate = useNavigate();
 
 	function viewCars(path: string) {

@@ -1,14 +1,10 @@
 import React from 'react'
-import Heading from './Heading'
+import NavButton from './NavButton'
 
 const Navbar = () => {
   return (
       <div className="flex bg-gray-800 h-14 mb-4 items-center px-4">
-				<Heading
-					className="text-white font-medium italic p-4 mr-10"
-					size="md"
-					text="AutoWissen"
-				/>
+				<NavButton text='AutoWissen'/>
 				<div className="flex-grow max-w">
 					<form className="flex justify-start">
 						<input
