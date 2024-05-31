@@ -9,7 +9,7 @@ const App = () => {
 	const navigate = useNavigate();
 
 	function viewCars(path: string) {
-		navigate(path);
+		navigate("/models/" + path);
 	}
 
 	return (
@@ -25,7 +25,7 @@ const App = () => {
 							imageSrc={car.src}
 							year={car.year}
 							imgSize={car.imgSize}
-							onClick={() => viewCars(`/${car.make}`)}
+							onClick={() => viewCars(`${car.make}`)}
 						/>
 					);
 				})}
