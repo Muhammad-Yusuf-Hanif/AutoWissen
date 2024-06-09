@@ -1,57 +1,47 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import vehiclesData from "./Models/VehiclesData.json"; // Adjust path as necessary
 import VehicleTiles from "../components/VehicleTiles";
-import { useParams } from "react-router-dom";
-import { capitalizeFirstLetter } from "../helpers";
+import { useNavigate, useParams } from "react-router-dom";
+import { capitalizeFirstLetter, Car, CarModel } from "../helpers";
 import { carsData } from "../components/cars";
-// import imageData from "./imageData"; // Adjust path as necessary
 
-const Models = () => {
-	const { model } = useParams();
-	console.log(model);
-	const handleTileClick = (model: string) => {
-		console.log(`Clicked on: ${model}`);
+const Models: React.FC = () => {
+	const params = useParams<{ model?: string }>();
+	const navigate = useNavigate();
+	const model = params.model;
+
+	const handleTileClick = (selectedModel: string) => {
+		const modelPath = `/models/${selectedModel
+			.replace(/\s+/g, "-")
+			.toLowerCase()}`;
+		navigate(modelPath);
+		console.log(`Navigating to: ${modelPath}`);
 	};
 
-	const capitalised = capitalizeFirstLetter(model);
-	console.log("capitalise clg", capitalised);
-	// console.log("audidata", audiData);
+	const capitalised = model ? capitalizeFirstLetter(model) : "";
 
-	const test = carsData[capitalised];
+	const carData: Car[] = carsData.filter((car) => car.make === capitalised);
 
-	const audiData = carsData.filter((car) => car.make === capitalised);
-	console.log("audiData", audiData[0].models);
-	// console.log(bmwCars);
 	return (
 		<>
 			<Navbar />
 			<div>
 				<h1 className="flex text-2xl justify-center">
-					Welcome to {model} - Home of {model} information!
+					Welcome to {capitalised} - Home of {capitalised} information!
 				</h1>
 			</div>
 			<div className="p-4 max-w-4xl mx-auto">
-				{audiData[0].models?.map((model) => {
-					return <VehicleTiles model={model.model} />;
-				})}
-				{/* {audiData[0].models.map(([decade, models], decadeIndex) => (
-					<div key={decadeIndex} className="mb-6">
-						<h2 className="text-2xl font-bold mb-4">{decade}</h2>
-						<div className="flex flex-col">
-							{models &&
-								models?.map((model, modelIndex) => (
-									<VehicleTiles
-										key={modelIndex}
-										model={model}
-										onClick={() => handleTileClick(model)}
-										className="w-full mb-4"
-										// imageSrc={imageData[model]} // Pass the image URL from imageData
-									/>
-								))}
-						</div>
-					</div>
-				))} */}
+				{carData.length > 0 ? (
+					carData[0].models.map((selectedModel: CarModel, modelId: number) => (
+						<VehicleTiles
+							key={modelId}
+							model={selectedModel.model}
+							onClick={() => handleTileClick(selectedModel.model)}
+						/>
+					))
+				) : (
+					<p>No models found for {capitalised}.</p>
+				)}
 			</div>
 		</>
 	);

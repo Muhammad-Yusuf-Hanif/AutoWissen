@@ -28,5 +28,5 @@ const NavButton = ({ text, additionalClasses, ...rest }: Props) => {
 
 export default NavButton;
 
-// This is a reusable component that was created to display text for any further announced
+// This is a reusable component that was created to navigate for any further announced
 // components in the website

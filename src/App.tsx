@@ -9,14 +9,17 @@ const App = () => {
 	const navigate = useNavigate();
 
 	function viewCars(path: string) {
-		navigate("/models/" + path);
+		navigate("/make/" + path);
 	}
 
 	return (
 		<>
 			<Navbar />
 
-			<div className="flex flex-wrap max-w-[1248px] m-auto gap-2 justify-center">
+			<div
+				className="flex flex-wrap max-w-[1248px] m-auto gap-2
+			justify-center"
+			>
 				{carsData.map((car) => {
 					return (
 						<CarTiles
