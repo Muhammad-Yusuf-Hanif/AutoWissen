@@ -31,24 +31,29 @@ const ModelDetails = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="p-4 max-w-3xl mx-auto">
-				<h1 className="text-2xl font-bold">{selectedModel.model}</h1>
-				<p>Year: {selectedModel.year}</p>
-				<div className="border rounded-xl">
+			<div className="m-6 max-w-5xl mx-auto">
+				<h1 className="text-3xl font-bold">{selectedModel.model}</h1>
+				<h2 className="font-bold">Year : {selectedModel.year}</h2>
+				<div className="border rounded-xl max-w-[70%] max-h-[480px] overflow-hidden">
 					{selectedModel.image && (
-						<img src={selectedModel.image} alt={selectedModel.model} />
+						<img
+							src={selectedModel.image}
+							alt={selectedModel.model}
+							className="w-full h-auto"
+						/>
 					)}
 				</div>
-				<h2 className="my-3">Vehicle Specs</h2>
-				<div className="flex flex-col my-3 border w-max-[40%]">
-					<h2>Power : {selectedModel.Power}</h2>
-					<h2 className="flex gap-3">
+				<h2 className="my-3 font-bold text-[18px]">Vehicle Specs</h2>
+				<div className="flex flex-col my-3 border rounded-md max-w-[20%]">
+					<h2> Power : {selectedModel.Power}</h2>
+					<h2 className="flex gap-1">
 						Fuel Type :{" "}
-						<img className="w-[30px]" src={selectedModel.FuelType} />{" "}
+						<img className="w-[30px]" src={selectedModel.FuelType} alt="" />{" "}
 					</h2>
 				</div>
-				<h2 className="my-2 font-sans">
-					Vehicle Details - {selectedModel.Desc}
+				<h1 className="font-bold text-[18px]">Vehicle Details </h1>
+				<h2 className="my-2 font-sans" style={{ whiteSpace: "pre-line" }}>
+					{selectedModel.Desc}
 				</h2>
 			</div>
 		</>
