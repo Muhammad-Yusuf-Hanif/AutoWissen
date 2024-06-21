@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CarTiles from "./components/CarTiles";
 import { carsData } from "./components/cars";
 import { useNavigate } from "react-router-dom";
